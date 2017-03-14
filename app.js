@@ -87,16 +87,6 @@ document.getElementById('blue').addEventListener('click', () => {
 })
 
 
- $(function () {
-    $('canvas').getContext(function(){
-      socket.emit('mousemove', );
-      $('#canvas').val('');
-      return false;
-    });
-    socket.on('mousemove', function(msg){
-      $('#canvas').append();
-    });
-  });
 
 
 //let clickX = []
