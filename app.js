@@ -1,6 +1,7 @@
 const RED = '#F00'
 const GREEN = '#0F0'
 const BLUE = '#00F'
+const socket = io()
 
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
@@ -28,7 +29,11 @@ function addClick(coords, drag) {
   clickY.push(coords.y)
   clickDrag.push(drag)
   clickColor.push(curColor)
-
+  socket.emit('addClick', {
+      cordinates: coords,
+      drag: drag,
+      curColor: curColor,
+  });
 }
 
 function redraw() {
@@ -80,3 +85,21 @@ document.getElementById('green').addEventListener('click', () => {
 document.getElementById('blue').addEventListener('click', () => {
   curColor = BLUE
 })
+
+
+ $(function () {
+    $('canvas').getContext(function(){
+      socket.emit('mousemove', );
+      $('#canvas').val('');
+      return false;
+    });
+    socket.on('mousemove', function(msg){
+      $('#canvas').append();
+    });
+  });
+
+
+//let clickX = []
+//let clickY = []
+//let clickDrag = []
+//let clickColor = []
