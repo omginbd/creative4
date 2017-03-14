@@ -86,7 +86,14 @@ document.getElementById('blue').addEventListener('click', () => {
   curColor = BLUE
 })
 
-
+socket.on('clickadded' , function(data){
+   
+    clickX = data.clickX;
+    clickX = data.clickY;
+    clickX = data.clickDrag;
+    clickX = data.clickColor;
+    
+});
 
 
 //let clickX = []
