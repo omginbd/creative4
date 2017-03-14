@@ -1,31 +1,32 @@
-var express = require('express');
-var app = express();
+var express = require('express')
+var app = express()
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-
-var clickX = [], clickY = [], clickDrag = [], clickColor = [];
-
+const clicks = {}
 
 app.use(express.static('./'))
 
-
 io.on('connection', function(socket){
-    
+    clicks[socket.id] = []
     socket.on('addClick', function(data){
-        clickX.push(coords.x)
-        clickY.push(coords.y)
-        clickDrag.push(drag)
-        clickColor.push(curColor)
-        io.emit('clickadded', {
-            clickX,
-            clickY,
-            clickDrag,
-            clickColor
-                
-        });
+      clicks[socket.id].push(data)
+      io.emit('clickadded', clicks);
     })
- 
+
+    socket.on('clear-me', function(data) {
+      clicks[data] = []
+      io.emit('clickadded', clicks)
+    })
+
+    socket.on('clear-everything', function(data) {
+      for (const id in clicks) {
+        clicks[id] = []
+      }  
+      io.emit('clickadded', clicks)
+    })
+
+    io.sockets.connected[socket.id].emit('clickadded', clicks)
 });
 
 http.listen(3000, function(){

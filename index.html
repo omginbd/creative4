@@ -3,7 +3,7 @@
   <head>
     <title>Draw with me!</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   </head>
   <body>
@@ -14,9 +14,13 @@
           <canvas id="canvas" width=512 height=512></canvas>
         </div>
         <div class="color-buttons">
-          <button id="red">RED</button>
-          <button id="green">GREEN</button>
-          <button id="blue">BLUE</button>
+          <div id="red"></div>
+          <div id="green"></div>
+          <div id="blue"></div>
+        </div>
+        <div class="color-buttons">
+          <button id="clear-me">Clear Me</button>
+          <button id="clear-everything">Clear Everything</button>
         </div>
       </div>
     </div>
