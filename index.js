@@ -17,6 +17,13 @@ io.on('connection', function(socket){
         clickY.push(coords.y)
         clickDrag.push(drag)
         clickColor.push(curColor)
+        io.emit('clickadded', {
+            clickX,
+            clickY,
+            clickDrag,
+            clickColor
+                
+        });
     })
  
 });
