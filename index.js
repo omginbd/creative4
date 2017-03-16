@@ -8,7 +8,9 @@ const clicks = {}
 app.use(express.static('./'))
 
 io.on('connection', function(socket){
+    
     clicks[socket.id] = []
+    
     socket.on('addClick', function(data){
       clicks[socket.id].push(data)
       io.emit('clickadded', clicks);
@@ -27,6 +29,7 @@ io.on('connection', function(socket){
     })
 
     io.sockets.connected[socket.id].emit('clickadded', clicks)
+    
 });
 
 http.listen(3000, function(){
